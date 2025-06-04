@@ -37,7 +37,7 @@ void tambahSnack() {
 void lihatSnack() {
     cout << "\n== Daftar Snack ==\n";
     if (daftarSnack.empty()) {
-        cout << "(Belum ada data snack)\n";
+        cout << "(Belum ada snack)\n";
     } else {
         for (size_t i = 0; i < daftarSnack.size(); ++i) {
             cout << i+1 << ". " << daftarSnack[i].nama << " - " << daftarSnack[i].kategori << " - Rp" << daftarSnack[i].harga << "\n";
