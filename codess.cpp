@@ -19,3 +19,17 @@ void tampilkanMenu() {
     cout << "3. Keluar\n";
     cout << "Pilih menu: ";
 }
+
+void tambahSnack() {
+    Snack s;
+    cout << "\n== Tambah Snack ==\n";
+    cout << "Nama: ";
+    cin.ignore();
+    cin.getline(s.nama, 50);
+    cout << "Kategori: ";
+    getline(cin, s.kategori);
+    cout << "Harga: ";
+    cin >> s.harga;
+    daftarSnack.push_back(s);
+    cout << "Snack berhasil ditambahkan!\n\n";
+}
