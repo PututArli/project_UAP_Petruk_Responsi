@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <cstdlib>
 using namespace std;
 
 struct Snack {
@@ -44,4 +45,35 @@ void lihatSnack() {
         }
     }
     cout << endl;
+}
+
+int main(){
+
+    int pilihan;
+    do{
+        tampilkanMenu();
+        cin >> pilihan;
+        switch(pilihan){
+            case 1:
+                tambahSnack();
+                cin.ignore();
+                cin.get();
+                system("cls");
+                break;
+            case 2:
+                lihatSnack();
+                cin.ignore();
+                cin.get();
+                system("cls");
+                break;
+            case 3:
+                cout << "Keluar..\n";
+                return 0;
+            default:
+                cout << " Pilihan tidak valid!\n";
+        }
+    }
+    while(pilihan != 3);
+
+    return 0;
 }
