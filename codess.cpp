@@ -24,11 +24,12 @@ struct Snack {
 };
 
 vector<Snack> daftarSnack = {
-    {"Kerupuk", "Gurih" , 5000},
-    {"Wafer" , "Manis" , 10000},
-    {"Rujak" , "Campuran" , 7000},
-    {"Es Campur" , "Campuran", 8000},
-    {"Tahu Crispy", "Gurih" , 5000}
+    {"Kerupuk", "gurih" , 5000},
+    {"Wafer" , "manis" , 10000},
+    {"Rujak" , "campuran" , 7000},
+    {"Es Campur" , "campuran", 8000},
+    {"Tahu Crispy", "gurih" , 5000},
+    {"Wisnu", "manis" , 20000}
 };
 
 bool comparerasio(Snack a , Snack b){
@@ -81,6 +82,27 @@ void lihatSnack() {
     cout << endl;
 }
 
+void kategoriSnack(){
+    string InputKategori;
+    cout << "Masukkan kategori snack (contoh: gurih, manis, campuran): ";
+    cin.ignore();
+    getline(cin, InputKategori);
+
+    bool ditemukan = false;
+    cout << "\n== Snack Kategori " << InputKategori << " ==\n";
+    for (Snack snack : daftarSnack){
+        if (snack.kategori == InputKategori){
+            cout << "- " << snack.nama << " - Rp" << snack.harga << "\n";
+            ditemukan = true;
+        }
+    }
+    if (!ditemukan){
+        cout << ("Tidak ada kategori snack tersebut.\n");
+    }
+
+    cout << endl;
+}  
+
 int main(){
 
     int pilihan;
@@ -94,18 +116,23 @@ int main(){
                 cin.get();
                 system("cls");
                 break;
-            
             case 2:
-                //aku belum bikin fungsinya :v
-                cin.ignore();
+                kategoriSnack();
+                cout << "Tekan Enter untuk melanjutkan...\n";
                 cin.get();
                 system("cls");
                 break;
             case 3:
                 cout << "Keluar..\n";
+                cout << "See you next time!\n";
                 return 0;
             default:
-                cout << " Pilihan tidak valid!\n";
+                cout << "=== Pilihan tidak valid! ===\n\n";
+                cout << "Tekan Enter untuk melanjutkan...\n";
+                cin.ignore();
+                cin.get();
+                system("cls");
+                break;
         }
     }
     while(pilihan != 3);
