@@ -6,33 +6,67 @@
 using namespace std;
 
 struct Snack {
-    char nama[50];
+    string nama;
     string kategori;
+    int rating;
     int harga;
+
+    Snack(string n, string k, int h, float r = 4.0){
+        nama = n;
+        kategori = k;
+        rating = r;
+        harga = h;
+    }
+
+    float rasio(){
+        return rating / harga;
+    }
 };
 
-vector<Snack> daftarSnack;
+vector<Snack> daftarSnack = {
+    {"Kerupuk", "Gurih" , 5000},
+    {"Wafer" , "Manis" , 10000},
+    {"Rujak" , "Campuran" , 7000},
+    {"Es Campur" , "Campuran", 8000},
+    {"Tahu Crispy", "Gurih" , 5000}
+};
+
+bool comparerasio(Snack a , Snack b){
+    return a.rasio() > b.rasio();
+}
 
 void tampilkanMenu() {
     cout << "=== MENU CAMILAN ===\n";
-    cout << "1. Tambah Snack\n";
-    cout << "2. Lihat Snack\n";
+    cout << "1. Lihat Semua Snack\n";
+    cout << "2. Lihat Snack Berdasarkan Kategori\n";
     cout << "3. Keluar\n";
     cout << "Pilih menu: ";
 }
 
-void tambahSnack() {
-    Snack s;
-    cout << "\n== Tambah Snack ==\n";
-    cout << "Nama: ";
-    cin.ignore();
-    cin.getline(s.nama, 50);
-    cout << "Kategori: ";
-    getline(cin, s.kategori);
-    cout << "Harga: ";
-    cin >> s.harga;
-    daftarSnack.push_back(s);
-    cout << "Snack berhasil ditambahkan!\n\n";
+void merge(vector<Snack>& arr , int kiri , int mid , int kanan){
+    vector<Snack> arrkiri(arr.begin() + kiri, arr.begin()+ mid + 1);
+    vector<Snack> arrkanan(arr.begin() + mid + 1 , arr.begin() + kanan + 1);
+    int i = 0 , j = 0 , k = kiri;
+
+    while(i < arrkiri.size() && j < arrkanan.size()){
+        if(comparerasio(arrkiri[i],arrkanan[j])){
+            arr[k++] = arrkiri[i++];
+        }else{
+            arr[k++] = arrkanan[j++];
+        }
+    }
+    while(i < arrkiri.size()) arr[k++] = arrkiri[i++];
+    while(j < arrkanan.size()) arr[k++] = arrkanan[j++];
+}
+
+void Mergesort(vector<Snack> arr , int kiri, int kanan){
+    if(kiri >= kanan){
+        return;
+    }
+    int mid = (kiri+kanan)/2;
+    Mergesort(arr,kiri,mid);
+    Mergesort(arr, mid + 1, kanan);
+    merge(arr, kiri,mid,kanan);
 }
 
 void lihatSnack() {
@@ -55,13 +89,14 @@ int main(){
         cin >> pilihan;
         switch(pilihan){
             case 1:
-                tambahSnack();
+                lihatSnack();
                 cin.ignore();
                 cin.get();
                 system("cls");
                 break;
+            
             case 2:
-                lihatSnack();
+                //aku belum bikin fungsinya :v
                 cin.ignore();
                 cin.get();
                 system("cls");
