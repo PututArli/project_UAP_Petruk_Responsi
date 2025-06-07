@@ -123,6 +123,7 @@ int main(){
                 system("cls");
                 break;
             case 3:
+                system("cls");
                 cout << "Keluar..\n";
                 cout << "See you next time!\n";
                 return 0;
