@@ -71,6 +71,7 @@ void Mergesort(vector<Snack> arr , int kiri, int kanan){
 }
 
 void lihatSnack() {
+    system("cls");
     cout << "\n== Daftar Snack ==\n";
     if (daftarSnack.empty()) {
         cout << "(Belum ada snack)\n";
@@ -78,8 +79,11 @@ void lihatSnack() {
         for (size_t i = 0; i < daftarSnack.size(); ++i) {
             cout << i+1 << ". " << daftarSnack[i].nama << " - " << daftarSnack[i].kategori << " - Rp" << daftarSnack[i].harga << "\n";
         }
+        cout << "\nTekan enter untuk melanjutkan....\n";
+        cin.get();
+        system("cls");
     }
-    cout << endl;
+    
 }
 
 void kategoriSnack(){
@@ -87,6 +91,7 @@ void kategoriSnack(){
     cout << "Masukkan kategori snack (contoh: gurih, manis, campuran): ";
     cin.ignore();
     getline(cin, InputKategori);
+    system("cls");
 
     bool ditemukan = false;
     cout << "\n== Snack Kategori " << InputKategori << " ==\n";
@@ -109,12 +114,10 @@ int main(){
     do{
         tampilkanMenu();
         cin >> pilihan;
+        cin.ignore();
         switch(pilihan){
             case 1:
                 lihatSnack();
-                cin.ignore();
-                cin.get();
-                system("cls");
                 break;
             case 2:
                 kategoriSnack();
