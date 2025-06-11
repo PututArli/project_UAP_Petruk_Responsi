@@ -37,7 +37,7 @@ bool comparerasio(Snack a , Snack b){
 }
 
 void tampilkanMenu() {
-    cout << "=== MENU CAMILAN ===\n";
+    cout << "========== MENU CAMILAN ===========\n";
     cout << "1. Lihat Semua Snack\n";
     cout << "2. Lihat Snack Berdasarkan Kategori\n";
     cout << "3. Keluar\n";
@@ -89,7 +89,6 @@ void lihatSnack() {
 void kategoriSnack(){
     string InputKategori;
     cout << "Masukkan kategori snack (contoh: gurih, manis, campuran): ";
-    cin.ignore();
     getline(cin, InputKategori);
     system("cls");
 
