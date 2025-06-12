@@ -3,6 +3,7 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <limits>
 using namespace std;
 
 struct Snack {
@@ -40,7 +41,8 @@ void tampilkanMenu() {
     cout << "========== MENU CAMILAN ===========\n";
     cout << "1. Lihat Semua Snack\n";
     cout << "2. Lihat Snack Berdasarkan Kategori\n";
-    cout << "3. Keluar\n";
+    cout << "3. Lihat Snack Berdasarkan Rasio Rating\n";
+    cout << "4. Keluar\n";
     cout << "Pilih menu: ";
 }
 
@@ -107,13 +109,25 @@ void kategoriSnack(){
     cout << endl;
 }  
 
+
 int main(){
 
     int pilihan;
     do{
         tampilkanMenu();
-        cin >> pilihan;
+
+        if (!(cin >> pilihan)){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "=== Input tidak valid! ===\n\n";
+            cout << "Tekan Enter untuk melanjutkan...\n";
+            cin.get();
+            system("cls");
+            continue;
+        }
+
         cin.ignore();
+
         switch(pilihan){
             case 1:
                 lihatSnack();
@@ -127,12 +141,10 @@ int main(){
             case 3:
                 system("cls");
                 cout << "Keluar..\n";
-                cout << "See you next time!\n";
-                return 0;
+                break;
             default:
                 cout << "=== Pilihan tidak valid! ===\n\n";
                 cout << "Tekan Enter untuk melanjutkan...\n";
-                cin.ignore();
                 cin.get();
                 system("cls");
                 break;
