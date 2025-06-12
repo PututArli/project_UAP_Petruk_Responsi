@@ -109,6 +109,19 @@ void kategoriSnack(){
     cout << endl;
 }  
 
+void lihatSnackTerakhir(){
+    system("cls");
+    if (historySnack.empty()) {
+        cout << "Belum ada snack yang dilihat.\n";
+    } else {
+        Snack terakhir = historySnack.top();
+        cout << "Snack terakhir yang dilihat:\n";
+        cout << "- " << terakhir.nama << " - " << terakhir.kategori << " - Rp" << terakhir.harga << "\n";
+    }
+    cout << "\nTekan enter untuk kembali ke menu...\n";
+    cin.get();
+    system("cls");
+}
 
 int main(){
 
@@ -139,8 +152,8 @@ int main(){
                 system("cls");
                 break;
             case 3:
+                lihatSnackTerakhir();
                 system("cls");
-                cout << "Keluar..\n";
                 break;
             default:
                 cout << "=== Pilihan tidak valid! ===\n\n";
