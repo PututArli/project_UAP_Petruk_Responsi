@@ -54,7 +54,8 @@ void tampilkanMenu() {
     cout << "1. Lihat Semua Snack\n";
     cout << "2. Lihat Snack Berdasarkan Kategori\n";
     cout << "3. Lihat Riwayat Snack terakhir\n";
-    cout << "4. Keluar\n";
+    cout << "4. Lihat Snack Berdasarkan Harga\n";
+    cout << "5. Keluar\n";
     cout << "Pilih menu: ";
 }
 
@@ -177,6 +178,36 @@ void lihatSnackTerakhir(){
     system("cls");
 }
 
+void BerdasarkanHarga() {
+    system("cls");
+    int hargaMin, hargaMax;
+    cout << "Masukkan rentang harga min: ";
+    cin >> hargaMin;
+    cout << "Masukkan rentang harga max: ";
+    cin >> hargaMax;
+    cin.ignore();
+
+    vector<Snack> hasil;
+    for (Snack snack : daftarSnack) {
+        if (snack.harga >= hargaMin && snack.harga <= hargaMax) {
+            hasil.push_back(snack);
+        }
+    }
+
+    if (hasil.empty()) {
+        cout << "\nTidak ada snack dalam rentang harga tersebut.\n";
+    } else {
+        cout << "\n== Snack dalam Rentang Harga Rp" << hargaMin << " - Rp" << hargaMax << " ==\n";
+        for (Snack snack : hasil) {
+            cout << "- " << snack.nama << " - Rp" << snack.harga << " - Rating: " << snack.rating << "\n";
+        }
+    }
+
+    cout << "\nTekan enter untuk kembali ke menu...\n";
+    cin.get();
+}
+
+
 int main(){
 
     int pilihan;
@@ -201,15 +232,18 @@ int main(){
                 break;
             case 2:
                 kategoriSnack();
-                cout << "Tekan Enter untuk melanjutkan...\n";
-                cin.get();
                 system("cls");
                 break;
             case 3:
                 lihatSnackTerakhir();
                 break;
             case 4:
+                BerdasarkanHarga();
+                system("cls");
+                break;
+            case 5:
                 cout << "Terima kasih telah melihat menu kami!!\n";
+                cout << "Sampai jumpa lagi!\n";
                 break;
             default:
                 cout << "=== Pilihan tidak valid! ===\n\n";
@@ -219,7 +253,7 @@ int main(){
                 break;
         }
     }
-    while(pilihan != 4);
+    while(pilihan != 5);
 
     return 0;
 }
