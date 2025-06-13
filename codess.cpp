@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <limits>
+#include <stack>
 using namespace std;
 
 struct Snack {
@@ -24,6 +25,8 @@ struct Snack {
     }
 };
 
+stack<Snack> historySnack;
+
 vector<Snack> daftarSnack = {
     {"Kerupuk", "gurih" , 5000},
     {"Wafer" , "manis" , 10000},
@@ -41,7 +44,7 @@ void tampilkanMenu() {
     cout << "========== MENU CAMILAN ===========\n";
     cout << "1. Lihat Semua Snack\n";
     cout << "2. Lihat Snack Berdasarkan Kategori\n";
-    cout << "3. Lihat Snack Berdasarkan Rasio Rating\n";
+    cout << "3. Lihat Riwayat Snack terakhir\n";
     cout << "4. Keluar\n";
     cout << "Pilih menu: ";
 }
@@ -81,6 +84,20 @@ void lihatSnack() {
         for (size_t i = 0; i < daftarSnack.size(); ++i) {
             cout << i+1 << ". " << daftarSnack[i].nama << " - " << daftarSnack[i].kategori << " - Rp" << daftarSnack[i].harga << "\n";
         }
+
+        int pilihanSnack;
+        cout << "\nPilih snack yang ingin dilihat (1 - " << daftarSnack.size() << "): ";
+        cin >> pilihanSnack;
+        cin.ignore(); // bersihkan newline
+
+        if (pilihanSnack >= 1 && pilihanSnack <= daftarSnack.size()) {
+            Snack dilihat = daftarSnack[pilihanSnack - 1];
+            historySnack.push(dilihat); // simpan ke stack
+            cout << "\nKamu melihat: " << dilihat.nama << "\n";
+        } else {
+            cout << "\nPilihan tidak valid.\n";
+        }
+
         cout << "\nTekan enter untuk melanjutkan....\n";
         cin.get();
         system("cls");
@@ -153,7 +170,9 @@ int main(){
                 break;
             case 3:
                 lihatSnackTerakhir();
-                system("cls");
+                break;
+            case 4:
+                cout << "Terima kasih telah melihat menu kami!!\n";
                 break;
             default:
                 cout << "=== Pilihan tidak valid! ===\n\n";
@@ -163,7 +182,7 @@ int main(){
                 break;
         }
     }
-    while(pilihan != 3);
+    while(pilihan != 4);
 
     return 0;
 }
