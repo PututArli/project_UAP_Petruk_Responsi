@@ -33,7 +33,16 @@ vector<Snack> daftarSnack = {
     {"Rujak" , "campuran" , 7000},
     {"Es Campur" , "campuran", 8000},
     {"Tahu Crispy", "gurih" , 5000},
-    {"Wisnu", "manis" , 20000}
+    {"Untir-untir", "manis" , 9000},
+    {"Keripik singkong", "gurih", 10000},
+    {"Kacang mix", "campuran", 12000},
+    {"Soes kering", "manis", 15000},
+    {"Basreng", "pedas", 7000},
+    {"Keripik kaca", "pedas", 8500},
+    {"Keripik piscok", "manis", 10000},
+    {"Makaroni", "pedas", 8000},
+    {"Keripik pangsit", "pedas", 7000},
+    {"Semprong", "gurih", 9000}
 };
 
 bool comparerasio(Snack a , Snack b){
@@ -107,7 +116,7 @@ void lihatSnack() {
 
 void kategoriSnack(){
     string InputKategori;
-    cout << "Masukkan kategori snack (contoh: gurih, manis, campuran): ";
+    cout << "Masukkan kategori snack (contoh: gurih, manis, pedas, campuran): ";
     getline(cin, InputKategori);
     system("cls");
 
