@@ -88,12 +88,12 @@ void lihatSnack() {
         int pilihanSnack;
         cout << "\nPilih snack yang ingin dilihat (1 - " << daftarSnack.size() << "): ";
         cin >> pilihanSnack;
-        cin.ignore(); // bersihkan newline
+        cin.ignore(); 
 
         if (pilihanSnack >= 1 && pilihanSnack <= daftarSnack.size()) {
             Snack dilihat = daftarSnack[pilihanSnack - 1];
-            historySnack.push(dilihat); // simpan ke stack
-            cout << "\nKamu melihat: " << dilihat.nama << "\n";
+            historySnack.push(dilihat); 
+            cout << "\nKamu melihat: " << dilihat.nama << " - " << dilihat.kategori << " - Rp" << dilihat.harga << "\n";
         } else {
             cout << "\nPilihan tidak valid.\n";
         }
