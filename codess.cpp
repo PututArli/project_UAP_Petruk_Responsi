@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <limits>
 #include <stack>
+#include <ctime>
 using namespace std;
 
 struct Snack {
@@ -55,7 +56,8 @@ void tampilkanMenu() {
     cout << "2. Lihat Snack Berdasarkan Kategori\n";
     cout << "3. Lihat Riwayat Snack terakhir\n";
     cout << "4. Lihat Snack Berdasarkan Harga\n";
-    cout << "5. Keluar\n";
+    cout << "5. Rekomendasi Snack hari ini\n";
+    cout << "6. Keluar\n";
     cout << "Pilih menu: ";
 }
 
@@ -207,6 +209,26 @@ void BerdasarkanHarga() {
     cin.get();
 }
 
+void snackhari() {
+    system("cls");
+    cout << "============= SNACK HARI INI =============\n";
+    srand(time(0));
+
+    int randomIndex = rand() % daftarSnack.size();
+    Snack rekomendasi = daftarSnack[randomIndex];
+
+    cout << " Rekomendasi spesial untuk kamu hari ini:\n\n";
+    cout << " NAMA   : " << rekomendasi.nama << "\n";
+    cout << " KATEGORI : " << rekomendasi.kategori << "\n";
+    cout << " HARGA  : Rp" << rekomendasi.harga << "\n";
+    cout << " RATING : " << rekomendasi.rating << "/5.0\n\n";
+    cout << "Coba sekarang juga dan rasakan kenikmatannya!\n";
+    cout << "=============================================\n";
+    cout << "Snack ini cocok untuk kamu yang suka " << rekomendasi.kategori << ".\n";
+
+    cout << "\nTekan enter untuk kembali...";
+    cin.get();
+}
 
 int main(){
 
@@ -242,6 +264,10 @@ int main(){
                 system("cls");
                 break;
             case 5:
+                snackhari();
+                system("cls");
+                break;
+            case 6:
                 cout << "Terima kasih telah melihat menu kami!!\n";
                 cout << "Sampai jumpa lagi!\n";
                 break;
@@ -253,7 +279,7 @@ int main(){
                 break;
         }
     }
-    while(pilihan != 5);
+    while(pilihan != 6);
 
     return 0;
 }
