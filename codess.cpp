@@ -10,14 +10,14 @@ using namespace std;
 struct Snack {
     string nama;
     string kategori;
-    int rating;
     int harga;
+    float rating;
 
-    Snack(string n, string k, int h, float r = 4.0){
+    Snack(string n, string k, int h, float r){
         nama = n;
         kategori = k;
-        rating = r;
         harga = h;
+        rating = r;
     }
 
     float rasio(){
@@ -28,25 +28,25 @@ struct Snack {
 stack<Snack> historySnack;
 
 vector<Snack> daftarSnack = {
-    {"Kerupuk", "gurih" , 5000},
-    {"Wafer" , "manis" , 10000},
-    {"Rujak" , "campuran" , 7000},
-    {"Es Campur" , "campuran", 8000},
-    {"Tahu Crispy", "gurih" , 5000},
-    {"Untir-untir", "manis" , 9000},
-    {"Keripik singkong", "gurih", 10000},
-    {"Kacang mix", "campuran", 12000},
-    {"Soes kering", "manis", 15000},
-    {"Basreng", "pedas", 7000},
-    {"Keripik kaca", "pedas", 8500},
-    {"Keripik piscok", "manis", 10000},
-    {"Makaroni", "pedas", 8000},
-    {"Keripik pangsit", "pedas", 7000},
-    {"Semprong", "gurih", 9000}
+    {"Kerupuk", "gurih" , 5000, 5.0},
+    {"Wafer" , "manis" , 10000, 4.6},
+    {"Rujak" , "campuran" , 7000, 4.7},
+    {"Es Campur" , "campuran", 8000, 4.5},
+    {"Tahu Crispy", "gurih" , 5000, 3.0},
+    {"Untir-untir", "manis" , 9000, 4.2},
+    {"Keripik singkong", "gurih", 10000, 4.0},
+    {"Kacang mix", "campuran", 12000, 3.8},
+    {"Soes kering", "manis", 15000, 4.4},
+    {"Basreng", "pedas", 7000, 5.0},
+    {"Keripik kaca", "pedas", 8500, 4.6},
+    {"Keripik piscok", "manis", 10000, 4.8},
+    {"Makaroni", "pedas", 8000, 4.1},
+    {"Keripik pangsit", "pedas", 7000, 4.3},
+    {"Semprong", "gurih", 9000, 3.7},
 };
 
-bool comparerasio(Snack a , Snack b){
-    return a.rasio() > b.rasio();
+bool comparerating(Snack a , Snack b){
+    return a.rating > b.rating;
 }
 
 void tampilkanMenu() {
@@ -64,7 +64,7 @@ void merge(vector<Snack>& arr , int kiri , int mid , int kanan){
     int i = 0 , j = 0 , k = kiri;
 
     while(i < arrkiri.size() && j < arrkanan.size()){
-        if(comparerasio(arrkiri[i],arrkanan[j])){
+        if(comparerating(arrkiri[i],arrkanan[j])){
             arr[k++] = arrkiri[i++];
         }else{
             arr[k++] = arrkanan[j++];
@@ -74,14 +74,14 @@ void merge(vector<Snack>& arr , int kiri , int mid , int kanan){
     while(j < arrkanan.size()) arr[k++] = arrkanan[j++];
 }
 
-void Mergesort(vector<Snack> arr , int kiri, int kanan){
-    if(kiri >= kanan){
+void Mergesort(vector<Snack>& arr, int kiri, int kanan) {
+    if (kiri >= kanan) {
         return;
     }
-    int mid = (kiri+kanan)/2;
-    Mergesort(arr,kiri,mid);
+    int mid = (kiri + kanan) / 2;
+    Mergesort(arr, kiri, mid);
     Mergesort(arr, mid + 1, kanan);
-    merge(arr, kiri,mid,kanan);
+    merge(arr, kiri, mid, kanan);
 }
 
 void lihatSnack() {
@@ -102,7 +102,7 @@ void lihatSnack() {
         if (pilihanSnack >= 1 && pilihanSnack <= daftarSnack.size()) {
             Snack dilihat = daftarSnack[pilihanSnack - 1];
             historySnack.push(dilihat); 
-            cout << "\nKamu melihat: " << dilihat.nama << " - " << dilihat.kategori << " - Rp" << dilihat.harga << "\n";
+            cout << "\nKamu melihat: " << dilihat.nama << " - " << dilihat.kategori << " - Rp" << dilihat.harga << " Rating: "<< dilihat.rating << "\n";
         } else {
             cout << "\nPilihan tidak valid.\n";
         }
@@ -120,6 +120,13 @@ void kategoriSnack(){
     getline(cin, InputKategori);
     system("cls");
 
+    vector<Snack> rating;
+    for (Snack snack : daftarSnack){
+        if (snack.kategori == InputKategori){
+            rating.push_back(snack);
+        }
+    }
+
     bool ditemukan = false;
     cout << "\n== Snack Kategori " << InputKategori << " ==\n";
     for (Snack snack : daftarSnack){
@@ -132,6 +139,27 @@ void kategoriSnack(){
         cout << ("Tidak ada kategori snack tersebut.\n");
     }
 
+    int pilihan;
+    cout << "\nKamu ingin lihat rating atau tidak?\n";
+    cout << "1. Lihat berdasarkan rating tertinggi\n";
+    cout << "2. Kembali ke menu utama\n";
+    cout << "Pilih: ";
+    cin >> pilihan;
+    cin.ignore();
+    system("cls");
+
+    if (pilihan == 1) {
+        Mergesort(rating, 0, rating.size() - 1);
+
+        cout << "\n== Snack Kategori " << InputKategori << " (Urut Berdasarkan Rating Tertinggi) ==\n";
+        for (Snack snack : rating){
+            cout << "- " << snack.nama << " - Rp" << snack.harga << " - Rating: " << snack.rating << "\n";
+        }
+
+        cout << "\nTekan Enter untuk kembali ke menu...\n";
+        cin.get();
+        system("cls");
+    }
     cout << endl;
 }  
 
