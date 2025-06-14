@@ -270,6 +270,8 @@ int main(){
             case 6:
                 cout << "Terima kasih telah melihat menu kami!!\n";
                 cout << "Sampai jumpa lagi!\n";
+                cin.get();
+                system("cls");
                 break;
             default:
                 cout << "=== Pilihan tidak valid! ===\n\n";
