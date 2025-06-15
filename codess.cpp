@@ -44,6 +44,27 @@ vector<Snack> daftarSnack = {
     {"Makaroni", "pedas", 8000, 4.1},
     {"Keripik pangsit", "pedas", 7000, 4.3},
     {"Semprong", "gurih", 9000, 3.7},
+    {"Lemper","gurih",1000,4.0},
+    {"Risol","campuran",1000,4.1},
+    {"Bakpia","manis",10000,5.0},
+    {"Roti Bakar","campuran",10000,4.5},
+    {"Permen","manis",500,2.0},
+    {"Martabak","campuran",5000,4.0},
+    {"Telur gulung","gurih",1000,4.3},
+    {"Kuaci","gurih",500,3.5},
+    {"Regginang","gurih",5000,4.2},
+    {"Donut","campuran",2000,4.6},
+    {"Bakso","campuran",12000,4.5},
+    {"Somay","campuran",1000,4.5},
+    {"Nabati","manis",3000,4.1},
+    {"Es teler","manis",5000,4.2},
+    {"Es teh","manis",3000,4.6},
+    {"Es buah","manis",7000,4.8},
+    {"Yakult","campuran",4000,5.0},
+    {"Kopi","manis",4000,4.3},
+    {"Seblak","pedas",10000,3.5},
+    {"Nastar","manis",2000,5.0},
+    {"Cireng","gurih",5000,3.9}
 };
 
 bool comparerating(Snack a , Snack b){
